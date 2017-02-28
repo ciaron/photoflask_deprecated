@@ -1,0 +1,2 @@
+graft photoflask/templates
+graft photoflask/static

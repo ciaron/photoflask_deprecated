@@ -1,0 +1,1 @@
+from .photoflask import app
