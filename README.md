@@ -1,17 +1,17 @@
 # photoflask
 
 Create conda env
-    conda create -n photo
-    conda install flask
+  conda create -n photo
+  conda install flask
 
 Activate:
-    source activate photo
+  source activate photo
 
 Install this module via pip 
-    pip install --editable .
+  pip install --editable .
 
 Run:
 
-export FLASK_APP=photoflask
-export FLASK_DEBUG=true
-flask run
+  export FLASK_APP=photoflask
+  export FLASK_DEBUG=true
+  flask run
