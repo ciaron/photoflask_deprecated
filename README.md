@@ -36,7 +36,7 @@ The gallery/photo layout should look like this (in the static/ folder)
   * title.txt (optional - defaults to 'gallery3')
   * description.txt (optional)
 
-# FORMAT OF IMAGE DESCRIPTION FILES (i.e. <imageN>.txt)
+# FORMAT OF IMAGE DESCRIPTION FILES (i.e. \<imageN\>.txt)
 ```
 The Title of the Image
 --
