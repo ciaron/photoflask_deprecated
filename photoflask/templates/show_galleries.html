@@ -11,10 +11,15 @@
 #}
 
 {% for gal, galdata in galleries.iteritems() %}
-    <li><h2>Title: {{ galdata.title }}</h2>Description: {{ galdata.description|safe }}<br/>
+    <li><h2>Title: {{ galdata.title }}</h2>
+        <h2>Description: {{ galdata.description|safe }}</h2>
     {% for img, imgdata in galdata.images.iteritems() %}
-        {{ img }}<br/>
-        <img width="800" src="{{ imgdata.path }}"/>
+        Image Title: {{ imgdata.title }}<br/>
+        Image Description:
+            {% for l in imgdata.description %}
+              {{ l }}<br/>
+            {% endfor %}
+        <img width="100" src="{{ imgdata.path }}"/><br/>
     {% endfor %}
   {% else %}
     <li><em>Unbelievable.  No galleries!</em>
