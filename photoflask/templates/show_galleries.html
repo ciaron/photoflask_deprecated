@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=galleries>
+
+{#{% for key, value in galleries.iteritems() %}
+    <li>{{ key }}</li> 
+    {% for v in value %}
+     <b>{{ v }}</b>
+    {% endfor %}
+{% endfor %}
+#}
+
+{% for gal, galdata in galleries.iteritems() %}
+    <li><h2>Title: {{ galdata.title }}</h2>Description: {{ galdata.description|safe }}<br/>
+    {% for img, imgdata in galdata.images.iteritems() %}
+        {{ img }}<br/>
+        <img width="800" src="{{ imgdata.path }}"/>
+    {% endfor %}
+  {% else %}
+    <li><em>Unbelievable.  No galleries!</em>
+  {% endfor %}
+  </ul>
+
+{% endblock %}
