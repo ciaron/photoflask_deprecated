@@ -37,11 +37,11 @@ The gallery/photo layout should look like this (in the static/ folder)
   * description.txt (optional)
 
 # FORMAT OF IMAGE DESCRIPTION FILES (i.e. <imageN>.txt)
-`
+```
 The Title of the Image
 --
 This is the description of this image. It can be as long as you like, but might be truncated
-`
+```
 
 
 
