@@ -1,3 +1,4 @@
 photoflask.egg-info
 photoflask/static
+.*.swp
 *.pyc
