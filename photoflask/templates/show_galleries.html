@@ -1,4 +1,15 @@
 {% extends "layout.html" %}
+
+{% block gallerylist %}
+
+    <ul>
+    {% for gal, galdata in galleries.iteritems() %}
+        <li>{{ galdata.title }} </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
 {% block body %}
   <ul class=galleries>
 

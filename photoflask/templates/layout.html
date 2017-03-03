@@ -1,12 +1,39 @@
 <!doctype html>
-<title>PhotoFlask</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<div class=page>
-  <h1>PhotoFlask</h1>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
+    <title>PhotoFlask</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 
-  {% block body %}{% endblock %}
-</div>
+<h1>Ciaron's Photos</h1>
+
+<div class="container-fluid">
+<div class=row>
+
+  <div class="left col-md-2">
+    {% block gallerylist %}{% endblock %}
+  </div>
+
+  <div class="main col-md-10">
+
+    {% for message in get_flashed_messages() %}
+      <div class=flash>{{ message }}</div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+  </div>
+
+</div> 
+</div> 
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>

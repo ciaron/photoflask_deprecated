@@ -18,10 +18,12 @@ def get_image_info(filename):
 @app.route('/')
 def index():
 
+    content = os.path.join(app.static_folder, 'content')
+
     galleries = {}
 
     # get directories at top level
-    root, dirs, files = os.walk(app.static_folder).next()
+    root, dirs, files = os.walk(content).next()
 
     for gallery in dirs: # each top-level dir is a gallery
         r,d,filelist = os.walk(os.path.join(root, gallery)).next()
@@ -58,7 +60,7 @@ def index():
                 else:
                     imgdata=["notitle","nodesc"]
 
-                images[f] = {'title':imgdata[0], 'description':imgdata[1:], 'path':url_for('static', filename=os.path.join(gallery,f))}
+                images[f] = {'title':imgdata[0], 'description':imgdata[1:], 'path':url_for('static', filename=os.path.join('content',gallery,f))}
 
             
         galleries[gallery]={'title':title, 'description':desc, 'images':images}
