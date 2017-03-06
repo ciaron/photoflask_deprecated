@@ -3,8 +3,9 @@
 {% block gallerylist %}
 
     <ul>
-    {% for gal, galdata in galleries.iteritems() %}
-        <li>{{ galdata.title }} </li>
+    {# {% for gal, galdata in galleries.iteritems() %} #}
+    {% for gal in galleries %}
+        <li>{{ gal.title }} </li>
     {% endfor %}
     </ul>
 
@@ -13,18 +14,11 @@
 {% block body %}
   <ul class=galleries>
 
-{#{% for key, value in galleries.iteritems() %}
-    <li>{{ key }}</li> 
-    {% for v in value %}
-     <b>{{ v }}</b>
-    {% endfor %}
-{% endfor %}
-#}
-
-{% for gal, galdata in galleries.iteritems() %}
-    <li><h2>Title: {{ galdata.title }}</h2>
-        <h2>Description: {{ galdata.description|safe }}</h2>
-    {% for img, imgdata in galdata.images.iteritems() %}
+{#<h2>{{ galleries[gallery_id|int - 1].title }}</h2>#}
+{#{% for gal in galleries %}#}
+    <li><h2>Title: {{ gal.title }}</h2>
+        <h2>Description: {{ gal.description|safe }}</h2>
+    {% for img, imgdata in gal.images.iteritems() %}
         Image Title: {{ imgdata.title }}<br/>
         Image Description:
             {% for l in imgdata.description %}
@@ -32,9 +26,7 @@
             {% endfor %}
         <img width="100" src="{{ imgdata.path }}"/><br/>
     {% endfor %}
-  {% else %}
-    <li><em>Unbelievable.  No galleries!</em>
-  {% endfor %}
+{# {% endfor %}#}
   </ul>
 
 {% endblock %}

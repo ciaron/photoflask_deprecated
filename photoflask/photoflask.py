@@ -15,39 +15,20 @@ def get_image_info(filename):
     del(data[1]) # delete the '--' line
     return data # a list of lines from the file.
 
-@app.route('/')
-def index():
-
-    content = os.path.join(app.static_folder, 'content')
-
-    galleries = {}
+def get_galleries():
+    galleries = []
 
     # get directories at top level
+    content = os.path.join(app.static_folder, 'content')
     root, dirs, files = os.walk(content).next()
 
     for gallery in dirs: # each top-level dir is a gallery
         r,d,filelist = os.walk(os.path.join(root, gallery)).next()
 
-        galleries[gallery] = {}
-
-        # remove anything from filelist that isn't an image
-        # if it's the title or description file, add those to the dict
-
-        title = gallery
+        # Get title by removing leading "n."
+        title = gallery.split('.')[1]
+        #title = gallery
         desc = ''
-
-        if 'title.txt' in filelist:
-            with open(os.path.join(root, gallery, 'title.txt'), 'r') as t:
-                for line in t:
-                    title = line
-        if 'description.txt' in filelist:
-            pass
-
-        # remove non-image files from the list
-        #for f in filelist:
-        #    ext = os.path.basename(f).split('.')[-1]
-        #    if ext.lower() not in allowed_types: # i.e. not an image
-        #        filelist.remove(f)
 
         images = {}
         for f in filelist:
@@ -61,10 +42,22 @@ def index():
                     imgdata=["notitle","nodesc"]
 
                 images[f] = {'title':imgdata[0], 'description':imgdata[1:], 'path':url_for('static', filename=os.path.join('content',gallery,f))}
-
             
-        galleries[gallery]={'title':title, 'description':desc, 'images':images}
+        #galleries[gallery]={'title':title, 'description':desc, 'images':images}
+        galleries.append({'title':title, 'description':desc, 'images':images})
 
-    return render_template('show_galleries.html', galleries=galleries)
+    return galleries
+
+@app.route('/')
+def index():
+
+    galleries = get_galleries()
+
+    return render_template('show_index.html', galleries=galleries)
     #return str(galleries)
+    #return str(dirs)
 
+@app.route('/gallery/<gallery_id>')
+def show_gallery(gallery_id):
+    gallery = get_galleries()[int(gallery_id)-1]
+    return render_template('show_galleries.html', gallery_id=gallery_id, galleries=get_galleries(), gal=gallery)

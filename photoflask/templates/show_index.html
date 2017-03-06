@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block gallerylist %}
+<h2>Choose a gallery:</h2>
+    <ul>
+    {% for gal in galleries %}
+        <li><a href="{{ url_for('show_gallery',gallery_id=loop.index) }}">{{ gal.title }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{% block body %}
+{% endblock %}
